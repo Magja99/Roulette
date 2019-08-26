@@ -1,0 +1,10 @@
+#!/bin/bash
+
+javac GameWindow.java
+javac BasicWindow.java
+javac App.java
+javac MainWindow.java
+javac Errors.java
+javac RouletteLayout.java
+javac Wheel.java
+java App
