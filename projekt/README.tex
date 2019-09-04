@@ -1,0 +1,122 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\title{Dokumentacja projektu na przedmiot Programowanie Obiektowe}
+\author{Magdalena Jarecka}
+\date{rok I informatyka 308730}
+
+\begin{document}
+
+\maketitle
+Implementacja gry w Ruletkę w języku Java
+\tableofcontents
+
+\section{Wstęp}
+
+\paragraph{}
+Program służy do jednoosobowej gry w Ruletkę, zachowując przy tym wszystkie jej zasady.
+
+\section{Jak posługiwać się programem?}
+\paragraph{}
+Program należy uruchomić komendą "java App". Gracz zaczyna ze stawką 1000. Aby obstawić zakład, należy wybrać jeden z 10 przycisków znajdujących się po prawej stronie, lub wpisać w okno oznaczone jako "Number 1-36" jedną z liczb z przedziału 1-36. Następnie należy wpisać dowolną stawkę, nie przekraczającą posiadanej, w okno oznaczone jako "Bet" i wcisnąć enter. Obstawiona stawka pojawi się w dolnej tabeli. Gracz
+może obstawiać dowolnie, pod warunkiem, że nie obstawi więcej niż 5 numerów. Następnie należy wcisnąć przycisk Spin. Kulka wyląduje na danym polu, a z naszej posiadanej stawki zostanie adekwatnie do wyniku odjęte, lub dodane.
+\section{Klasa App}
+\subsection{Opis}
+\paragraph{}
+Klasa zawiera metodę main i służy do uruchamiania programu.
+\section{Klasa BasicWindow}
+\subsection{Opis}
+\paragraph{}
+Klasa jest klasą bazową, stworzoną na potrzeby stworzenia klas MainWindow i GameWindow. Zawiera elementy mające poprawić estetykę okna oraz metodę show(). Jej konstruktor ustawia jedynie layout oraz ustawia zamknięcie okna jako domyślą operację zakończenia programu.
+\subsection{Metoda show()}
+\paragraph{}
+Funkcją tej metody jest ustawienie lokalizacji okna tak, aby pojawiło się ono na środku ekranu oraz wywołanie operacji setVisible(true).
+\section{Klasa MainWindow}
+\subsection{Opis}
+\paragraph{}
+Klasa jest pochodną klasy BasicWindow. Tworzy okno główne, w którym znajdują się dwa przyciski
+"Play Roulette" i "Exit". Pierwszy przenosi nas do okna gry, zaś drugi zamyka program. Jej konstruktor ustawia rozmieszczenie elementów oraz podłącza słuchaczy do przycisków.
+\subsection{Podklasa GameListener}
+\paragraph{}
+Podklasa jest słuchaczem przycisku "Play Roulette". Implementuje ona interfejs ActionListener i rozszerza klasę abstrakcyjną Thread. Zawiera trzy metody:
+\begin{enumerate}
+  \item Metoda actionPerformed(ActionEvent e) "chowa" okno główne, tworzy nowe okno z grą oraz wywołuje metodę start().
+  \item Metoda start() tworzy nowy wątek, którego zadaniem jest pilnować aby w momencie przyciśnięcia przycisku "Back" w oknie gry, wrócić do okna głównego.
+  \item Metoda run() jest implementuje instrukcje dla wątku stworzonego w metodzie start().
+\end{enumerate}
+\subsection{Podklasa ExitListener}
+\paragraph{}
+Podklasa jest słuchaczem przycisku "Exit" i zamyka program jeśli zostanie on wciśnięty.
+\section{Klasa GameWindow}
+\subsection{Opis}
+\paragraph{}
+Klasa jest pochodną klasy BasicWindow. Tworzy okno, w którym znajdują się elementy potrzebne do gry. Jej konstruktor ustawia kolejno kulkę, koło rulety, przycisk Spin, etykietę z aktualnie posiadaną stawką, stół do ruletki (będący oddzielnym obiektem klasy RouletteLayout), tabelę z obstawianymi polami oraz przycisk "Back". Posiada metodę SetWagered() i trzy podklasy.
+\subsection{Metoda SetWagered()}
+\paragraph{}
+Metoda służy do aktualizacji tabeli z obstawianymi polami. Pobiera ona dane ze stołu i dzięki temu na bieżąco pokazuje graczowi co i na ile obstawił.
+\subsection{Podklasa CheckBalance}
+\paragraph{}
+Klasa ta rozszerza klasę abstrakcyją Thread. Służy ona do bieżącego obserwowania obstawiania.
+Zawiera dwie metody:
+\begin{enumerate}
+  \item Metoda start() tworzy nowy wątek, którego zadaniem pilnowanie aby etykita z posiadaną stawką oraz tabela z obstawionymi polami były aktualne. Wywołuje ona metodę SetWagered().
+  \item Metoda run() implementuje instrukcje dla threada stworzonego w metodzie start().
+\end{enumerate}
+\subsection{Podklasa BackListener}
+\paragraph{}
+Klasa ta implementuje interfejs ActionListener i słucha przycisku "Back". W razie wciśnięcia, ustawia bool goback na true (z czego skorzysta Podklasa GameListener klasy MainWindow) i pozbywa się okna.
+\subsection{Podklasa SpinListener}
+\paragraph{}
+Klasa ta implementuje interfejs ActionListener i słucha przycisku "Spin". W razie wciśnięcia wywołuje ona metodę spin() koła, która losuje numer. Następnie przekazuje numer oraz kolor do metody check() stołu ruletki i ustawia kulkę na właściwym miejscu.
+\section{Klasa RouletteLayout}
+\subsection{Opis}
+\paragraph{}
+Klasa ta rozszerza klasę JPanel. Służy do tworzenia stołu do ruletki. Znajdują się na niej przyciski służące do obstawiania, okienko tekstowe do wpisania stawki oraz okienko do wpisania numeru, jeśli taki chcemy obstawić. Posiada trzy metody i dwie podklasy.
+\subsection{Podklasa Listener}
+\paragraph{}
+Jest to klasa implementująca interfejs ActionListener i służy do słuchania wszystkich przycisków znajdujących się na stole oraz okna tekstowego "Bet". W przypadku wciśnięcia uaktualnia zmienną number, która służy do tymczasowego przechowania klikniętego zakładu. Jeśli po tym gracz wpisze stawkę do okna "Bet", wywoła ona metodę add(int i, int m). Jeśli gracz będzie próbował podać stawkę bez ówcześniejszego obstawienia, poda stawkę większą niż jest wstanie, lub nie wpisze liczby do okna "Bet" pojawi się adekwatny error.
+\subsection{Metoda add(int i, int m)}
+\paragraph{}
+Metoda ta służy do zapisania, który zakład został obstawiony i odjęcia od salda obstawionej stawki. Wywołuje też metodę zeruj(), która umożliwia dalsze obstawianie. Zmienna i jest indeksem zakładu a m stawką na niego postawioną.
+\subsection{Metoda zeruj()}
+\paragraph{}
+Ta pomocnicza metoda służy do wyczyszczenia okien tekstowych "Bet" i "Number 1-36", oraz zresetowania zmiennych number i money, które oznaczają kolejno aktualnie obstawiony zakład, oraz stawkę na niego postawioną.
+\subsection{Podklasa FListener}
+\paragraph{}
+Jest to klasa implementująca interfejs FocusListener i służy do słuchania okienka "Number 1-36"
+Zawiera dwie metody:
+\begin{enumerate}
+  \item Metoda focusGained() jest jedynie nadmieniona z konieczności implementacji, nie używamy jej w rzeczywistości
+  \item Metoda focusLost() określa co dzieje się podczas wpisania do czegoś do okna "Number 1-36" i kliknięcia na coś innego. Jeśli to co wpiszemy jest numerem od 1 do 36, to metoda ustawi zmienną number na odpowiadający jej obstawiany numer. W przypadku gdy numer nie jest z zakresu, lub gdy zostały wpisane znaki inne niż cyfry pojawi się adekwatny error.
+\end{enumerate}
+\subsection{Metoda check(int num, String c)}
+\paragraph{}
+Metoda ta służy do uaktualnienia salda gracza w zależności tego co obstawił i jaki numer został wylosowany na kole. W przypadku gdy metoda zostanie wywołana, a nic nie było obstawione pojawi się error.
+\section{Klasa Wheel}
+\subsection{Opis}
+\paragraph{}
+Klasa Wheel służy do tworzenia koła rulety. Jej konstruktor ładuje do Componentów Image oraz Ball odpowiednio pliki wheel.png i ball.png. Posiada ona trzy metody:
+\begin{enumerate}
+  \item Metoda spin() losuje numer oraz przydziela mu kolor na podstawie danych z tablicy N.
+  \item Metoda x() daje koordynat x kulki. Robi to odczytując dane z tablicy N.W tablicy X pod indeksem i kryje się położenie i-tego numeru na kole.
+  \item Metoda y() daje koordynat y kulki.
+\end{enumerate}
+\section{Klasa Error}
+\subsection{Opis}
+\paragraph{}
+Klasa ta służy do tworzenia okienek błędów, wrazie pojawienia się jednego z możliwych błędów. Jej konstruktor tworzy okienko Error, bez żadnej wiadomości oraz ustawia na niej przycisk OK.
+Posiada jedną podklasę słuchającą OK i w razie przyciśnięcia, pozbywa się okna. Jej metody ustawiają wiadomość w okienku na różne błędy.
+Jest sześć możliwych wiadomości:
+\begin{itemize}
+  \item BadInput() ustawia wiadomość "Bad input!" w przypadku gdy w okna tekstowe stołu do ruletki
+  wpisze się co innego niż liczby dodatnie.
+  \item InvalidRange() ustawia wiadomość "Invalid Range!" w przypadku gdy w okno tekstowe "Number 1-36" stołu wpisze się coś spoza zakresu.
+  \item SelectBet() ustawia wiadomość "First select bet!" w przypadku gdy gracz zechce obstawić sumę bez wcześniejszego zaznaczenia zakładu.
+  \item FiveNumbers() ustawia wiadomość "Selected more than 5 numbers!" w przypadku gdy gracz próbuje obstawić więcej niż 5 numerów.
+  \item NothingWagered() ustawia wiadomość "Nothing wagered!" w przypadku gdy gracz spróbuje zakręcić kołem bez obstawienia czegokolwiek.
+  \item TooMuch() ustawia wiadomość "You don't have that much!" w przypadku gdy gracz spróbuje obstawić więcej niż posiada.
+\end{itemize}
+Wszystkie te metody wywołują też metodę show().
+
+\end{document}

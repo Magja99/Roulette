@@ -25,7 +25,7 @@ public class Errors extends BasicWindow
         frame.setTitle("ERROR");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        class OKListener implements ActionListener 
+        class OKListener implements ActionListener
         {
             public void actionPerformed(ActionEvent e)
             {
@@ -70,10 +70,15 @@ public class Errors extends BasicWindow
         ErrorMessege.setText("Selected more than 5 numbers!");
         show();
     }
-    
+
     public void NothingWagered()
     {
         ErrorMessege.setText("Nothing wagered!");
+        show();
+    }
+    public void TooMuch()
+    {
+        ErrorMessege.setText("You don't have that much!");
         show();
     }
 }

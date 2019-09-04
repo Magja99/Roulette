@@ -1,0 +1,49 @@
+\contentsline {section}{\numberline {1}Wst\IeC {\k e}p}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {section}{\numberline {2}Jak pos\IeC {\l }ugiwa\IeC {\'c} si\IeC {\k e}\IeC {\nobreakspace }programem?}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {section}{\numberline {3}Klasa App}{2}
+\contentsline {subsection}{\numberline {3.1}Opis}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {section}{\numberline {4}Klasa BasicWindow}{2}
+\contentsline {subsection}{\numberline {4.1}Opis}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {subsection}{\numberline {4.2}Metoda show()}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {section}{\numberline {5}Klasa MainWindow}{3}
+\contentsline {subsection}{\numberline {5.1}Opis}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {subsection}{\numberline {5.2}Podklasa GameListener}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {subsection}{\numberline {5.3}Podklasa ExitListener}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {section}{\numberline {6}Klasa GameWindow}{3}
+\contentsline {subsection}{\numberline {6.1}Opis}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {subsection}{\numberline {6.2}Metoda SetWagered()}{4}
+\contentsline {paragraph}{}{4}
+\contentsline {subsection}{\numberline {6.3}Podklasa CheckBalance}{4}
+\contentsline {paragraph}{}{4}
+\contentsline {subsection}{\numberline {6.4}Podklasa BackListener}{4}
+\contentsline {paragraph}{}{4}
+\contentsline {subsection}{\numberline {6.5}Podklasa SpinListener}{4}
+\contentsline {paragraph}{}{4}
+\contentsline {section}{\numberline {7}Klasa RouletteLayout}{4}
+\contentsline {subsection}{\numberline {7.1}Opis}{4}
+\contentsline {paragraph}{}{4}
+\contentsline {subsection}{\numberline {7.2}Podklasa Listener}{4}
+\contentsline {paragraph}{}{4}
+\contentsline {subsection}{\numberline {7.3}Metoda add(int i, int m)}{5}
+\contentsline {paragraph}{}{5}
+\contentsline {subsection}{\numberline {7.4}Metoda zeruj()}{5}
+\contentsline {paragraph}{}{5}
+\contentsline {subsection}{\numberline {7.5}Podklasa FListener}{5}
+\contentsline {paragraph}{}{5}
+\contentsline {subsection}{\numberline {7.6}Metoda check(int num, String c)}{5}
+\contentsline {paragraph}{}{5}
+\contentsline {section}{\numberline {8}Klasa Wheel}{5}
+\contentsline {subsection}{\numberline {8.1}Opis}{5}
+\contentsline {paragraph}{}{5}
+\contentsline {section}{\numberline {9}Klasa Error}{6}
+\contentsline {subsection}{\numberline {9.1}Opis}{6}
+\contentsline {paragraph}{}{6}

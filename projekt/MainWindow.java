@@ -16,7 +16,7 @@ public class MainWindow extends BasicWindow
     private JButton Exit = new JButton("Exit");
     private Component Title = new JLabel("The Gorgeous Roulette!");
 
-    class GameListener extends Thread implements ActionListener 
+    class GameListener extends Thread implements ActionListener
     {
         private GameWindow game;
         private Thread t;
@@ -30,7 +30,7 @@ public class MainWindow extends BasicWindow
 
         public void run()
         {
-            try 
+            try
             {
                while(true)
                {
@@ -43,20 +43,20 @@ public class MainWindow extends BasicWindow
                   }
                   Thread.sleep(50);
                }
-            } 
+            }
             catch (InterruptedException e) {}
         }
-        
-        public void start () 
+
+        public void start ()
         {
-            if(t == null) 
+            if(t == null)
             {
                t = new Thread (this);
-               t.start ();
+               t.start();
             }
         }
     }
-    class ExitListener implements ActionListener 
+    class ExitListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {

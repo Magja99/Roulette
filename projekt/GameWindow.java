@@ -69,7 +69,7 @@ public class GameWindow extends BasicWindow
         Thread t;
         public void run()
         {
-            try 
+            try
             {
                while(true)
                {
@@ -82,16 +82,16 @@ public class GameWindow extends BasicWindow
             }
             catch (InterruptedException e) {}
         }
-        public void start() 
+        public void start()
         {
-            if(t == null) 
+            if(t == null)
             {
                t = new Thread (this);
                t.start ();
             }
         }
     }
-    class BackListener implements ActionListener 
+    class BackListener implements ActionListener
     {
         public void actionPerformed(ActionEvent e)
         {
@@ -118,17 +118,11 @@ public class GameWindow extends BasicWindow
             layout.putConstraint(SpringLayout.NORTH, wheel.Image, 10, SpringLayout.NORTH, inter);
             frame.revalidate();
             frame.repaint();
-        }   
-    }
-    class BetAmountListener implements ActionListener
-    {
-        public void actionPerformed(ActionEvent e)
-        {
-            bet = Integer.parseInt(BetAmount.getText());
         }
     }
+    
     public GameWindow()
-    {  
+    {
         CheckBalance x = new CheckBalance();
         x.start();
 
@@ -146,7 +140,7 @@ public class GameWindow extends BasicWindow
         Spin.setPreferredSize(new Dimension(150, 50));
         layout.putConstraint(SpringLayout.WEST, Spin, 128, SpringLayout.WEST, wheel.Image);
         layout.putConstraint(SpringLayout.NORTH, Spin, 420, SpringLayout.NORTH, wheel.Image);
-        
+
         inter.add(Balance);
         Balance.setPreferredSize(new Dimension(150, 50));
         layout.putConstraint(SpringLayout.WEST, Balance, 125, SpringLayout.WEST, Spin);
@@ -164,7 +158,7 @@ public class GameWindow extends BasicWindow
         inter.add(Two);
         layout.putConstraint(SpringLayout.WEST, Two, 200, SpringLayout.WEST, One);
         layout.putConstraint(SpringLayout.NORTH, Two, 50, SpringLayout.NORTH, Balance);
-        
+
         inter.add(Three);
         layout.putConstraint(SpringLayout.WEST, Three, 200, SpringLayout.WEST, Two);
         layout.putConstraint(SpringLayout.NORTH, Three, 50, SpringLayout.NORTH, Balance);
